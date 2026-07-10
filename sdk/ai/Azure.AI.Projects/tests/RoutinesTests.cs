@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Azure.AI.Projects.Agents;
 using Microsoft.ClientModel.TestFramework;
@@ -171,7 +172,13 @@ public class RoutinesTests : ProjectsClientTestBase
         }
         else if (triggerType == TriggerType.ManualDispatch)
         {
-            trigger = new CustomRoutineTrigger(provider: "manual", parameters: new Dictionary<string, BinaryData>());
+            trigger = new CustomRoutineTrigger(provider: "teams", parameters: new Dictionary<string, BinaryData>()
+                {
+                    { "connection_id", BinaryData.FromString(JsonSerializer.Serialize(TestEnvironment.TEAMS_CONNECTION_NAME)) },
+                    { "thread_type", BinaryData.FromString(JsonSerializer.Serialize("channel")) },
+                    { "group_id", BinaryData.FromString(JsonSerializer.Serialize(TestEnvironment.TEAMS_GROUP_ID))},
+                    { "channel_id", BinaryData.FromString(JsonSerializer.Serialize(TestEnvironment.TEAMS_CHANNEL_ID))},
+                });
         }
         else
         {
