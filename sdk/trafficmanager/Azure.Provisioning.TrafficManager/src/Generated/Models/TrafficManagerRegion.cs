@@ -22,7 +22,7 @@ namespace Azure.Provisioning.TrafficManager
         {
         }
 
-        /// <summary> Gets the Code. </summary>
+        /// <summary> Gets or sets the Code. </summary>
         public BicepValue<string> Code
         {
             get
@@ -30,9 +30,14 @@ namespace Azure.Provisioning.TrafficManager
                 Initialize();
                 return _code;
             }
+            set
+            {
+                Initialize();
+                _code.Assign(value);
+            }
         }
 
-        /// <summary> Gets the Name. </summary>
+        /// <summary> Gets or sets the Name. </summary>
         public BicepValue<string> Name
         {
             get
@@ -40,15 +45,25 @@ namespace Azure.Provisioning.TrafficManager
                 Initialize();
                 return _name;
             }
+            set
+            {
+                Initialize();
+                _name.Assign(value);
+            }
         }
 
-        /// <summary> Gets the Regions. </summary>
+        /// <summary> Gets or sets the Regions. </summary>
         public BicepList<TrafficManagerRegion> Regions
         {
             get
             {
                 Initialize();
                 return _regions;
+            }
+            set
+            {
+                Initialize();
+                _regions.Assign(value);
             }
         }
 

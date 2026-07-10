@@ -24,7 +24,7 @@ namespace Azure.Provisioning.ContainerService
         /// <summary> Creates a new AgentPoolUpgradeProfile. </summary>
         /// <param name="bicepIdentifier"> The bicep identifier name. </param>
         /// <param name="resourceVersion"> The resource API version. </param>
-        internal AgentPoolUpgradeProfile(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.ContainerService/managedClusters/agentPools/upgradeProfiles", resourceVersion ?? "2026-01-01")
+        public AgentPoolUpgradeProfile(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.ContainerService/managedClusters/agentPools/upgradeProfiles", resourceVersion ?? "2026-01-01")
         {
         }
 
@@ -58,13 +58,18 @@ namespace Azure.Provisioning.ContainerService
             }
         }
 
-        /// <summary> Gets the Properties. </summary>
+        /// <summary> Gets or sets the Properties. </summary>
         internal AgentPoolUpgradeProfileProperties Properties
         {
             get
             {
                 Initialize();
                 return _properties;
+            }
+            set
+            {
+                Initialize();
+                AssignOrReplace(ref _properties, value);
             }
         }
 
@@ -83,39 +88,71 @@ namespace Azure.Provisioning.ContainerService
             }
         }
 
-        /// <summary> Gets the KubernetesVersion. </summary>
+        /// <summary> Gets or sets the KubernetesVersion. </summary>
         public BicepValue<string> KubernetesVersion
         {
             get
             {
-                return Properties.KubernetesVersion;
+                return Properties is null ? default : Properties.KubernetesVersion;
+            }
+            set
+            {
+                if (Properties is null)
+                {
+                    Properties = new AgentPoolUpgradeProfileProperties();
+                }
+                Properties.KubernetesVersion = value;
             }
         }
 
-        /// <summary> Gets the OSType. </summary>
+        /// <summary> Gets or sets the OSType. </summary>
         public BicepValue<ContainerServiceOSType> OSType
         {
             get
             {
-                return Properties.OSType;
+                return Properties is null ? default : Properties.OSType;
+            }
+            set
+            {
+                if (Properties is null)
+                {
+                    Properties = new AgentPoolUpgradeProfileProperties();
+                }
+                Properties.OSType = value;
             }
         }
 
-        /// <summary> Gets the Upgrades. </summary>
+        /// <summary> Gets or sets the Upgrades. </summary>
         public BicepList<AgentPoolUpgradeProfilePropertiesUpgradesItem> Upgrades
         {
             get
             {
-                return Properties.Upgrades;
+                return Properties is null ? default : Properties.Upgrades;
+            }
+            set
+            {
+                if (Properties is null)
+                {
+                    Properties = new AgentPoolUpgradeProfileProperties();
+                }
+                Properties.Upgrades = value;
             }
         }
 
-        /// <summary> Gets the LatestNodeImageVersion. </summary>
+        /// <summary> Gets or sets the LatestNodeImageVersion. </summary>
         public BicepValue<string> LatestNodeImageVersion
         {
             get
             {
-                return Properties.LatestNodeImageVersion;
+                return Properties is null ? default : Properties.LatestNodeImageVersion;
+            }
+            set
+            {
+                if (Properties is null)
+                {
+                    Properties = new AgentPoolUpgradeProfileProperties();
+                }
+                Properties.LatestNodeImageVersion = value;
             }
         }
 
@@ -126,7 +163,7 @@ namespace Azure.Provisioning.ContainerService
             _id = DefineProperty<ResourceIdentifier>(nameof(Id), new string[] { "id" }, isOutput: true);
             _name = DefineProperty<string>(nameof(Name), new string[] { "name" }, isRequired: true, defaultValue: "default");
             _systemData = DefineModelProperty<SystemData>(nameof(SystemData), new string[] { "systemData" }, isOutput: true);
-            _properties = DefineModelProperty<AgentPoolUpgradeProfileProperties>(nameof(Properties), new string[] { "properties" });
+            _properties = DefineModelProperty<AgentPoolUpgradeProfileProperties>(nameof(Properties), new string[] { "properties" }, isRequired: true);
             _parent = DefineResource<ContainerServiceAgentPool>("Parent", new string[] { "parent" }, isRequired: true);
             DefineAdditionalProperties();
         }

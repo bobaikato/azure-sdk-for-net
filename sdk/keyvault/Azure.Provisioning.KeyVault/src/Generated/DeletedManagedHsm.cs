@@ -23,7 +23,7 @@ namespace Azure.Provisioning.KeyVault
         /// <summary> Creates a new DeletedManagedHsm. </summary>
         /// <param name="bicepIdentifier"> The bicep identifier name. </param>
         /// <param name="resourceVersion"> The resource API version. </param>
-        internal DeletedManagedHsm(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.KeyVault/locations/deletedManagedHSMs", resourceVersion ?? "2025-05-01")
+        public DeletedManagedHsm(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.KeyVault/locations/deletedManagedHSMs", resourceVersion ?? "2025-05-01")
         {
         }
 
@@ -62,13 +62,18 @@ namespace Azure.Provisioning.KeyVault
             }
         }
 
-        /// <summary> Gets the Properties. </summary>
+        /// <summary> Gets or sets the Properties. </summary>
         public DeletedManagedHsmProperties Properties
         {
             get
             {
                 Initialize();
                 return _properties;
+            }
+            set
+            {
+                Initialize();
+                AssignOrReplace(ref _properties, value);
             }
         }
 

@@ -24,7 +24,7 @@ namespace Azure.Provisioning.Batch
         {
         }
 
-        /// <summary> Gets the Id. </summary>
+        /// <summary> Gets or sets the Id. </summary>
         public BicepValue<ResourceIdentifier> Id
         {
             get
@@ -32,9 +32,14 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _id;
             }
+            set
+            {
+                Initialize();
+                _id.Assign(value);
+            }
         }
 
-        /// <summary> Gets the PerimeterGuid. </summary>
+        /// <summary> Gets or sets the PerimeterGuid. </summary>
         public BicepValue<Guid> PerimeterGuid
         {
             get
@@ -42,15 +47,25 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _perimeterGuid;
             }
+            set
+            {
+                Initialize();
+                _perimeterGuid.Assign(value);
+            }
         }
 
-        /// <summary> Gets the Location. </summary>
+        /// <summary> Gets or sets the Location. </summary>
         public BicepValue<AzureLocation> Location
         {
             get
             {
                 Initialize();
                 return _location;
+            }
+            set
+            {
+                Initialize();
+                _location.Assign(value);
             }
         }
 

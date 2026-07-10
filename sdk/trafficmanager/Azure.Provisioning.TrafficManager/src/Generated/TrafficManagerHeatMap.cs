@@ -23,7 +23,7 @@ namespace Azure.Provisioning.TrafficManager
         /// <summary> Creates a new TrafficManagerHeatMap. </summary>
         /// <param name="bicepIdentifier"> The bicep identifier name. </param>
         /// <param name="resourceVersion"> The resource API version. </param>
-        internal TrafficManagerHeatMap(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.Network/trafficmanagerprofiles/heatMaps", resourceVersion ?? "2022-04-01")
+        public TrafficManagerHeatMap(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.Network/trafficmanagerprofiles/heatMaps", resourceVersion ?? "2022-04-01")
         {
         }
 
@@ -52,13 +52,18 @@ namespace Azure.Provisioning.TrafficManager
             }
         }
 
-        /// <summary> Gets the Properties. </summary>
+        /// <summary> Gets or sets the Properties. </summary>
         internal HeatMapProperties Properties
         {
             get
             {
                 Initialize();
                 return _properties;
+            }
+            set
+            {
+                Initialize();
+                AssignOrReplace(ref _properties, value);
             }
         }
 
@@ -77,39 +82,71 @@ namespace Azure.Provisioning.TrafficManager
             }
         }
 
-        /// <summary> Gets the StartOn. </summary>
+        /// <summary> Gets or sets the StartOn. </summary>
         public BicepValue<DateTimeOffset> StartOn
         {
             get
             {
-                return Properties.StartOn;
+                return Properties is null ? default : Properties.StartOn;
+            }
+            set
+            {
+                if (Properties is null)
+                {
+                    Properties = new HeatMapProperties();
+                }
+                Properties.StartOn = value;
             }
         }
 
-        /// <summary> Gets the EndOn. </summary>
+        /// <summary> Gets or sets the EndOn. </summary>
         public BicepValue<DateTimeOffset> EndOn
         {
             get
             {
-                return Properties.EndOn;
+                return Properties is null ? default : Properties.EndOn;
+            }
+            set
+            {
+                if (Properties is null)
+                {
+                    Properties = new HeatMapProperties();
+                }
+                Properties.EndOn = value;
             }
         }
 
-        /// <summary> Gets the Endpoints. </summary>
+        /// <summary> Gets or sets the Endpoints. </summary>
         public BicepList<TrafficManagerHeatMapEndpoint> Endpoints
         {
             get
             {
-                return Properties.Endpoints;
+                return Properties is null ? default : Properties.Endpoints;
+            }
+            set
+            {
+                if (Properties is null)
+                {
+                    Properties = new HeatMapProperties();
+                }
+                Properties.Endpoints = value;
             }
         }
 
-        /// <summary> Gets the TrafficFlows. </summary>
+        /// <summary> Gets or sets the TrafficFlows. </summary>
         public BicepList<TrafficManagerHeatMapTrafficFlow> TrafficFlows
         {
             get
             {
-                return Properties.TrafficFlows;
+                return Properties is null ? default : Properties.TrafficFlows;
+            }
+            set
+            {
+                if (Properties is null)
+                {
+                    Properties = new HeatMapProperties();
+                }
+                Properties.TrafficFlows = value;
             }
         }
 

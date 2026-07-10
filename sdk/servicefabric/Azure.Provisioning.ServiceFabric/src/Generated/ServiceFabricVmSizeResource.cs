@@ -24,7 +24,7 @@ namespace Azure.Provisioning.ServiceFabric
         /// <summary> Creates a new ServiceFabricVmSizeResource. </summary>
         /// <param name="bicepIdentifier"> The bicep identifier name. </param>
         /// <param name="resourceVersion"> The resource API version. </param>
-        internal ServiceFabricVmSizeResource(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.ServiceFabric/locations/unsupportedVmSizes", resourceVersion ?? "2026-03-01-preview")
+        public ServiceFabricVmSizeResource(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.ServiceFabric/locations/unsupportedVmSizes", resourceVersion ?? "2026-03-01-preview")
         {
         }
 

@@ -23,7 +23,7 @@ namespace Azure.Provisioning.ContainerService
         {
         }
 
-        /// <summary> Gets the KubernetesVersion. </summary>
+        /// <summary> Gets or sets the KubernetesVersion. </summary>
         public BicepValue<string> KubernetesVersion
         {
             get
@@ -31,9 +31,14 @@ namespace Azure.Provisioning.ContainerService
                 Initialize();
                 return _kubernetesVersion;
             }
+            set
+            {
+                Initialize();
+                _kubernetesVersion.Assign(value);
+            }
         }
 
-        /// <summary> Gets the Name. </summary>
+        /// <summary> Gets or sets the Name. </summary>
         public BicepValue<string> Name
         {
             get
@@ -41,9 +46,14 @@ namespace Azure.Provisioning.ContainerService
                 Initialize();
                 return _name;
             }
+            set
+            {
+                Initialize();
+                _name.Assign(value);
+            }
         }
 
-        /// <summary> Gets the OSType. </summary>
+        /// <summary> Gets or sets the OSType. </summary>
         public BicepValue<ContainerServiceOSType> OSType
         {
             get
@@ -51,9 +61,14 @@ namespace Azure.Provisioning.ContainerService
                 Initialize();
                 return _osType;
             }
+            set
+            {
+                Initialize();
+                _osType.Assign(value);
+            }
         }
 
-        /// <summary> Gets the Upgrades. </summary>
+        /// <summary> Gets or sets the Upgrades. </summary>
         public BicepList<ManagedClusterPoolUpgradeProfileUpgradesItem> Upgrades
         {
             get
@@ -61,15 +76,20 @@ namespace Azure.Provisioning.ContainerService
                 Initialize();
                 return _upgrades;
             }
+            set
+            {
+                Initialize();
+                _upgrades.Assign(value);
+            }
         }
 
         /// <summary> Define all the provisionable properties for ManagedClusterPoolUpgradeProfile. </summary>
         protected override void DefineProvisionableProperties()
         {
             base.DefineProvisionableProperties();
-            _kubernetesVersion = DefineProperty<string>(nameof(KubernetesVersion), new string[] { "kubernetesVersion" });
+            _kubernetesVersion = DefineProperty<string>(nameof(KubernetesVersion), new string[] { "kubernetesVersion" }, isRequired: true);
             _name = DefineProperty<string>(nameof(Name), new string[] { "name" });
-            _osType = DefineProperty<ContainerServiceOSType>(nameof(OSType), new string[] { "osType" });
+            _osType = DefineProperty<ContainerServiceOSType>(nameof(OSType), new string[] { "osType" }, isRequired: true);
             _upgrades = DefineListProperty<ManagedClusterPoolUpgradeProfileUpgradesItem>(nameof(Upgrades), new string[] { "upgrades" });
             DefineAdditionalProperties();
         }

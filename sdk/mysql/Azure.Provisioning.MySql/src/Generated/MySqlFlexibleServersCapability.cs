@@ -24,7 +24,7 @@ namespace Azure.Provisioning.MySql
         /// <summary> Creates a new MySqlFlexibleServersCapability. </summary>
         /// <param name="bicepIdentifier"> The bicep identifier name. </param>
         /// <param name="resourceVersion"> The resource API version. </param>
-        internal MySqlFlexibleServersCapability(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.DBforMySQL/locations/capabilitySets", resourceVersion ?? "2024-12-30")
+        public MySqlFlexibleServersCapability(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.DBforMySQL/locations/capabilitySets", resourceVersion ?? "2024-12-30")
         {
         }
 
@@ -63,13 +63,18 @@ namespace Azure.Provisioning.MySql
             }
         }
 
-        /// <summary> Gets the Properties. </summary>
+        /// <summary> Gets or sets the Properties. </summary>
         internal CapabilityPropertiesV2 Properties
         {
             get
             {
                 Initialize();
                 return _properties;
+            }
+            set
+            {
+                Initialize();
+                AssignOrReplace(ref _properties, value);
             }
         }
 
@@ -78,6 +83,10 @@ namespace Azure.Provisioning.MySql
         {
             get
             {
+                if (Properties is null)
+                {
+                    Properties = new CapabilityPropertiesV2();
+                }
                 return Properties.SupportedGeoBackupRegions;
             }
         }
@@ -87,6 +96,10 @@ namespace Azure.Provisioning.MySql
         {
             get
             {
+                if (Properties is null)
+                {
+                    Properties = new CapabilityPropertiesV2();
+                }
                 return Properties.SupportedFlexibleServerEditions;
             }
         }
@@ -96,6 +109,10 @@ namespace Azure.Provisioning.MySql
         {
             get
             {
+                if (Properties is null)
+                {
+                    Properties = new CapabilityPropertiesV2();
+                }
                 return Properties.SupportedServerVersions;
             }
         }
@@ -105,6 +122,10 @@ namespace Azure.Provisioning.MySql
         {
             get
             {
+                if (Properties is null)
+                {
+                    Properties = new CapabilityPropertiesV2();
+                }
                 return Properties.SupportedFeatures;
             }
         }

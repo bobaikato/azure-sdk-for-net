@@ -25,7 +25,7 @@ namespace Azure.Provisioning.ContainerService
         /// <summary> Creates a new MeshUpgradeProfile. </summary>
         /// <param name="bicepIdentifier"> The bicep identifier name. </param>
         /// <param name="resourceVersion"> The resource API version. </param>
-        internal MeshUpgradeProfile(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.ContainerService/managedClusters/meshUpgradeProfiles", resourceVersion ?? "2026-01-01")
+        public MeshUpgradeProfile(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.ContainerService/managedClusters/meshUpgradeProfiles", resourceVersion ?? "2026-01-01")
         {
         }
 
@@ -64,13 +64,18 @@ namespace Azure.Provisioning.ContainerService
             }
         }
 
-        /// <summary> Gets the Properties. </summary>
+        /// <summary> Gets or sets the Properties. </summary>
         public MeshUpgradeProfileProperties Properties
         {
             get
             {
                 Initialize();
                 return _properties;
+            }
+            set
+            {
+                Initialize();
+                AssignOrReplace(ref _properties, value);
             }
         }
 

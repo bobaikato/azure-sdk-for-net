@@ -22,7 +22,7 @@ namespace Azure.Provisioning.TrafficManager
         {
         }
 
-        /// <summary> Gets the EndpointId. </summary>
+        /// <summary> Gets or sets the EndpointId. </summary>
         public BicepValue<int> EndpointId
         {
             get
@@ -30,9 +30,14 @@ namespace Azure.Provisioning.TrafficManager
                 Initialize();
                 return _endpointId;
             }
+            set
+            {
+                Initialize();
+                _endpointId.Assign(value);
+            }
         }
 
-        /// <summary> Gets the QueryCount. </summary>
+        /// <summary> Gets or sets the QueryCount. </summary>
         public BicepValue<int> QueryCount
         {
             get
@@ -40,9 +45,14 @@ namespace Azure.Provisioning.TrafficManager
                 Initialize();
                 return _queryCount;
             }
+            set
+            {
+                Initialize();
+                _queryCount.Assign(value);
+            }
         }
 
-        /// <summary> Gets the Latency. </summary>
+        /// <summary> Gets or sets the Latency. </summary>
         public BicepValue<double> Latency
         {
             get
@@ -50,14 +60,19 @@ namespace Azure.Provisioning.TrafficManager
                 Initialize();
                 return _latency;
             }
+            set
+            {
+                Initialize();
+                _latency.Assign(value);
+            }
         }
 
         /// <summary> Define all the provisionable properties for TrafficManagerHeatMapQueryExperience. </summary>
         protected override void DefineProvisionableProperties()
         {
             base.DefineProvisionableProperties();
-            _endpointId = DefineProperty<int>(nameof(EndpointId), new string[] { "endpointId" });
-            _queryCount = DefineProperty<int>(nameof(QueryCount), new string[] { "queryCount" });
+            _endpointId = DefineProperty<int>(nameof(EndpointId), new string[] { "endpointId" }, isRequired: true);
+            _queryCount = DefineProperty<int>(nameof(QueryCount), new string[] { "queryCount" }, isRequired: true);
             _latency = DefineProperty<double>(nameof(Latency), new string[] { "latency" });
             DefineAdditionalProperties();
         }

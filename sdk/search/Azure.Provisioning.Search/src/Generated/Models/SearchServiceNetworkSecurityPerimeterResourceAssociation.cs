@@ -21,7 +21,7 @@ namespace Azure.Provisioning.Search
         {
         }
 
-        /// <summary> Gets the Name. </summary>
+        /// <summary> Gets or sets the Name. </summary>
         public BicepValue<string> Name
         {
             get
@@ -29,15 +29,25 @@ namespace Azure.Provisioning.Search
                 Initialize();
                 return _name;
             }
+            set
+            {
+                Initialize();
+                _name.Assign(value);
+            }
         }
 
-        /// <summary> Gets the AccessMode. </summary>
+        /// <summary> Gets or sets the AccessMode. </summary>
         public BicepValue<SearchServiceNetworkSecurityPerimeterResourceAssociationAccessMode> AccessMode
         {
             get
             {
                 Initialize();
                 return _accessMode;
+            }
+            set
+            {
+                Initialize();
+                _accessMode.Assign(value);
             }
         }
 

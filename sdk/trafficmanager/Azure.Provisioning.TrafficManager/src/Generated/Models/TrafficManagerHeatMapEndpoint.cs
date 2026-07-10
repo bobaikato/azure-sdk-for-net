@@ -22,7 +22,7 @@ namespace Azure.Provisioning.TrafficManager
         {
         }
 
-        /// <summary> Gets the ResourceId. </summary>
+        /// <summary> Gets or sets the ResourceId. </summary>
         public BicepValue<ResourceIdentifier> ResourceId
         {
             get
@@ -30,15 +30,25 @@ namespace Azure.Provisioning.TrafficManager
                 Initialize();
                 return _resourceId;
             }
+            set
+            {
+                Initialize();
+                _resourceId.Assign(value);
+            }
         }
 
-        /// <summary> Gets the EndpointId. </summary>
+        /// <summary> Gets or sets the EndpointId. </summary>
         public BicepValue<int> EndpointId
         {
             get
             {
                 Initialize();
                 return _endpointId;
+            }
+            set
+            {
+                Initialize();
+                _endpointId.Assign(value);
             }
         }
 

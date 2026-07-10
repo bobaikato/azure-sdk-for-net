@@ -20,13 +20,18 @@ namespace Azure.Provisioning.Batch
         {
         }
 
-        /// <summary> Gets the Value. </summary>
+        /// <summary> Gets or sets the Value. </summary>
         public BicepValue<string> Value
         {
             get
             {
                 Initialize();
                 return _value;
+            }
+            set
+            {
+                Initialize();
+                _value.Assign(value);
             }
         }
 

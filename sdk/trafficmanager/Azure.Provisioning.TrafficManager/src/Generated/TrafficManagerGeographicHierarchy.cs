@@ -21,7 +21,7 @@ namespace Azure.Provisioning.TrafficManager
         /// <summary> Creates a new TrafficManagerGeographicHierarchy. </summary>
         /// <param name="bicepIdentifier"> The bicep identifier name. </param>
         /// <param name="resourceVersion"> The resource API version. </param>
-        internal TrafficManagerGeographicHierarchy(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.Network/trafficManagerGeographicHierarchies", resourceVersion ?? "2022-04-01")
+        public TrafficManagerGeographicHierarchy(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.Network/trafficManagerGeographicHierarchies", resourceVersion ?? "2022-04-01")
         {
         }
 
@@ -45,7 +45,7 @@ namespace Azure.Provisioning.TrafficManager
             }
         }
 
-        /// <summary> Gets the Properties. </summary>
+        /// <summary> Gets or sets the Properties. </summary>
         internal GeographicHierarchyProperties Properties
         {
             get
@@ -53,14 +53,27 @@ namespace Azure.Provisioning.TrafficManager
                 Initialize();
                 return _properties;
             }
+            set
+            {
+                Initialize();
+                AssignOrReplace(ref _properties, value);
+            }
         }
 
-        /// <summary> Gets the GeographicHierarchy. </summary>
+        /// <summary> Gets or sets the GeographicHierarchy. </summary>
         public TrafficManagerRegion GeographicHierarchy
         {
             get
             {
-                return Properties.GeographicHierarchy;
+                return Properties is null ? default : Properties.GeographicHierarchy;
+            }
+            set
+            {
+                if (Properties is null)
+                {
+                    Properties = new GeographicHierarchyProperties();
+                }
+                Properties.GeographicHierarchy = value;
             }
         }
 

@@ -24,7 +24,7 @@ namespace Azure.Provisioning.Batch
         {
         }
 
-        /// <summary> Gets the Name. </summary>
+        /// <summary> Gets or sets the Name. </summary>
         public BicepValue<string> Name
         {
             get
@@ -32,9 +32,14 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _name;
             }
+            set
+            {
+                Initialize();
+                _name.Assign(value);
+            }
         }
 
-        /// <summary> Gets the AccessRulesVersion. </summary>
+        /// <summary> Gets or sets the AccessRulesVersion. </summary>
         public BicepValue<int> AccessRulesVersion
         {
             get
@@ -42,9 +47,14 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _accessRulesVersion;
             }
+            set
+            {
+                Initialize();
+                _accessRulesVersion.Assign(value);
+            }
         }
 
-        /// <summary> Gets the AccessRules. </summary>
+        /// <summary> Gets or sets the AccessRules. </summary>
         public BicepList<BatchAccessRule> AccessRules
         {
             get
@@ -52,9 +62,14 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _accessRules;
             }
+            set
+            {
+                Initialize();
+                _accessRules.Assign(value);
+            }
         }
 
-        /// <summary> Gets the DiagnosticSettingsVersion. </summary>
+        /// <summary> Gets or sets the DiagnosticSettingsVersion. </summary>
         public BicepValue<int> DiagnosticSettingsVersion
         {
             get
@@ -62,15 +77,25 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _diagnosticSettingsVersion;
             }
+            set
+            {
+                Initialize();
+                _diagnosticSettingsVersion.Assign(value);
+            }
         }
 
-        /// <summary> Gets the EnabledLogCategories. </summary>
+        /// <summary> Gets or sets the EnabledLogCategories. </summary>
         public BicepList<string> EnabledLogCategories
         {
             get
             {
                 Initialize();
                 return _enabledLogCategories;
+            }
+            set
+            {
+                Initialize();
+                _enabledLogCategories.Assign(value);
             }
         }
 

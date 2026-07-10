@@ -44,7 +44,7 @@ namespace Azure.Provisioning.Batch
             }
         }
 
-        /// <summary> Gets the NetworkSecurityPerimeter. </summary>
+        /// <summary> Gets or sets the NetworkSecurityPerimeter. </summary>
         public NetworkSecurityPerimeter NetworkSecurityPerimeter
         {
             get
@@ -52,9 +52,14 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _networkSecurityPerimeter;
             }
+            set
+            {
+                Initialize();
+                AssignOrReplace(ref _networkSecurityPerimeter, value);
+            }
         }
 
-        /// <summary> Gets the ResourceAssociation. </summary>
+        /// <summary> Gets or sets the ResourceAssociation. </summary>
         public BatchResourceAssociation ResourceAssociation
         {
             get
@@ -62,15 +67,25 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _resourceAssociation;
             }
+            set
+            {
+                Initialize();
+                AssignOrReplace(ref _resourceAssociation, value);
+            }
         }
 
-        /// <summary> Gets the Profile. </summary>
+        /// <summary> Gets or sets the Profile. </summary>
         public NetworkSecurityProfile Profile
         {
             get
             {
                 Initialize();
                 return _profile;
+            }
+            set
+            {
+                Initialize();
+                AssignOrReplace(ref _profile, value);
             }
         }
 

@@ -22,7 +22,7 @@ namespace Azure.Provisioning.ContainerService
         {
         }
 
-        /// <summary> Gets the Revision. </summary>
+        /// <summary> Gets or sets the Revision. </summary>
         public BicepValue<string> Revision
         {
             get
@@ -30,9 +30,14 @@ namespace Azure.Provisioning.ContainerService
                 Initialize();
                 return _revision;
             }
+            set
+            {
+                Initialize();
+                _revision.Assign(value);
+            }
         }
 
-        /// <summary> Gets the Upgrades. </summary>
+        /// <summary> Gets or sets the Upgrades. </summary>
         public BicepList<string> Upgrades
         {
             get
@@ -40,15 +45,25 @@ namespace Azure.Provisioning.ContainerService
                 Initialize();
                 return _upgrades;
             }
+            set
+            {
+                Initialize();
+                _upgrades.Assign(value);
+            }
         }
 
-        /// <summary> Gets the CompatibleWith. </summary>
+        /// <summary> Gets or sets the CompatibleWith. </summary>
         public BicepList<CompatibleVersions> CompatibleWith
         {
             get
             {
                 Initialize();
                 return _compatibleWith;
+            }
+            set
+            {
+                Initialize();
+                _compatibleWith.Assign(value);
             }
         }
 

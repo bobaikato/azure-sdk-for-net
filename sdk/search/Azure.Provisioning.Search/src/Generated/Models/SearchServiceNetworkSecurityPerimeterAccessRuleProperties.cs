@@ -26,7 +26,7 @@ namespace Azure.Provisioning.Search
         {
         }
 
-        /// <summary> Gets the Direction. </summary>
+        /// <summary> Gets or sets the Direction. </summary>
         public BicepValue<SearchServiceNetworkSecurityPerimeterAccessRuleDirection> Direction
         {
             get
@@ -34,9 +34,14 @@ namespace Azure.Provisioning.Search
                 Initialize();
                 return _direction;
             }
+            set
+            {
+                Initialize();
+                _direction.Assign(value);
+            }
         }
 
-        /// <summary> Gets the AddressPrefixes. </summary>
+        /// <summary> Gets or sets the AddressPrefixes. </summary>
         public BicepList<string> AddressPrefixes
         {
             get
@@ -44,9 +49,14 @@ namespace Azure.Provisioning.Search
                 Initialize();
                 return _addressPrefixes;
             }
+            set
+            {
+                Initialize();
+                _addressPrefixes.Assign(value);
+            }
         }
 
-        /// <summary> Gets the Subscriptions. </summary>
+        /// <summary> Gets or sets the Subscriptions. </summary>
         public BicepList<SearchServiceNetworkSecurityPerimeterInboundRuleSubscription> Subscriptions
         {
             get
@@ -54,9 +64,14 @@ namespace Azure.Provisioning.Search
                 Initialize();
                 return _subscriptions;
             }
+            set
+            {
+                Initialize();
+                _subscriptions.Assign(value);
+            }
         }
 
-        /// <summary> Gets the NetworkSecurityPerimeters. </summary>
+        /// <summary> Gets or sets the NetworkSecurityPerimeters. </summary>
         public BicepList<SearchServiceNetworkSecurityPerimeter> NetworkSecurityPerimeters
         {
             get
@@ -64,9 +79,14 @@ namespace Azure.Provisioning.Search
                 Initialize();
                 return _networkSecurityPerimeters;
             }
+            set
+            {
+                Initialize();
+                _networkSecurityPerimeters.Assign(value);
+            }
         }
 
-        /// <summary> Gets the FullyQualifiedDomainNames. </summary>
+        /// <summary> Gets or sets the FullyQualifiedDomainNames. </summary>
         public BicepList<string> FullyQualifiedDomainNames
         {
             get
@@ -74,9 +94,14 @@ namespace Azure.Provisioning.Search
                 Initialize();
                 return _fullyQualifiedDomainNames;
             }
+            set
+            {
+                Initialize();
+                _fullyQualifiedDomainNames.Assign(value);
+            }
         }
 
-        /// <summary> Gets the EmailAddresses. </summary>
+        /// <summary> Gets or sets the EmailAddresses. </summary>
         public BicepList<string> EmailAddresses
         {
             get
@@ -84,15 +109,25 @@ namespace Azure.Provisioning.Search
                 Initialize();
                 return _emailAddresses;
             }
+            set
+            {
+                Initialize();
+                _emailAddresses.Assign(value);
+            }
         }
 
-        /// <summary> Gets the PhoneNumbers. </summary>
+        /// <summary> Gets or sets the PhoneNumbers. </summary>
         public BicepList<string> PhoneNumbers
         {
             get
             {
                 Initialize();
                 return _phoneNumbers;
+            }
+            set
+            {
+                Initialize();
+                _phoneNumbers.Assign(value);
             }
         }
 

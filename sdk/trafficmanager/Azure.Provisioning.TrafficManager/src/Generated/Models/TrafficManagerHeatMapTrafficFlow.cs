@@ -24,7 +24,7 @@ namespace Azure.Provisioning.TrafficManager
         {
         }
 
-        /// <summary> Gets the SourceIP. </summary>
+        /// <summary> Gets or sets the SourceIP. </summary>
         public BicepValue<IPAddress> SourceIP
         {
             get
@@ -32,9 +32,14 @@ namespace Azure.Provisioning.TrafficManager
                 Initialize();
                 return _sourceIP;
             }
+            set
+            {
+                Initialize();
+                _sourceIP.Assign(value);
+            }
         }
 
-        /// <summary> Gets the Latitude. </summary>
+        /// <summary> Gets or sets the Latitude. </summary>
         public BicepValue<double> Latitude
         {
             get
@@ -42,9 +47,14 @@ namespace Azure.Provisioning.TrafficManager
                 Initialize();
                 return _latitude;
             }
+            set
+            {
+                Initialize();
+                _latitude.Assign(value);
+            }
         }
 
-        /// <summary> Gets the Longitude. </summary>
+        /// <summary> Gets or sets the Longitude. </summary>
         public BicepValue<double> Longitude
         {
             get
@@ -52,15 +62,25 @@ namespace Azure.Provisioning.TrafficManager
                 Initialize();
                 return _longitude;
             }
+            set
+            {
+                Initialize();
+                _longitude.Assign(value);
+            }
         }
 
-        /// <summary> Gets the QueryExperiences. </summary>
+        /// <summary> Gets or sets the QueryExperiences. </summary>
         public BicepList<TrafficManagerHeatMapQueryExperience> QueryExperiences
         {
             get
             {
                 Initialize();
                 return _queryExperiences;
+            }
+            set
+            {
+                Initialize();
+                _queryExperiences.Assign(value);
             }
         }
 

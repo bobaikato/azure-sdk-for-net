@@ -20,13 +20,18 @@ namespace Azure.Provisioning.ContainerService
         {
         }
 
-        /// <summary> Gets the MeshRevisions. </summary>
+        /// <summary> Gets or sets the MeshRevisions. </summary>
         public BicepList<MeshRevision> MeshRevisions
         {
             get
             {
                 Initialize();
                 return _meshRevisions;
+            }
+            set
+            {
+                Initialize();
+                _meshRevisions.Assign(value);
             }
         }
 

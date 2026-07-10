@@ -23,7 +23,7 @@ namespace Azure.Provisioning.KeyVault
         /// <summary> Creates a new DeletedKeyVault. </summary>
         /// <param name="bicepIdentifier"> The bicep identifier name. </param>
         /// <param name="resourceVersion"> The resource API version. </param>
-        internal DeletedKeyVault(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.KeyVault/locations/deletedVaults", resourceVersion ?? "2025-05-01")
+        public DeletedKeyVault(string bicepIdentifier, string resourceVersion = null) : base(bicepIdentifier, "Microsoft.KeyVault/locations/deletedVaults", resourceVersion ?? "2025-05-01")
         {
         }
 
@@ -62,13 +62,18 @@ namespace Azure.Provisioning.KeyVault
             }
         }
 
-        /// <summary> Gets the Properties. </summary>
+        /// <summary> Gets or sets the Properties. </summary>
         public DeletedKeyVaultProperties Properties
         {
             get
             {
                 Initialize();
                 return _properties;
+            }
+            set
+            {
+                Initialize();
+                AssignOrReplace(ref _properties, value);
             }
         }
 

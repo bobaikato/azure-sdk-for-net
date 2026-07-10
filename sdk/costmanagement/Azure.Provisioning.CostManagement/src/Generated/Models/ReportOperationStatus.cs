@@ -20,13 +20,18 @@ namespace Azure.Provisioning.CostManagement
         {
         }
 
-        /// <summary> Gets the StatusValue. </summary>
+        /// <summary> Gets or sets the StatusValue. </summary>
         public BicepValue<ReportOperationStatusType> StatusValue
         {
             get
             {
                 Initialize();
                 return _statusValue;
+            }
+            set
+            {
+                Initialize();
+                _statusValue.Assign(value);
             }
         }
 

@@ -27,7 +27,7 @@ namespace Azure.Provisioning.Batch
         {
         }
 
-        /// <summary> Gets the Direction. </summary>
+        /// <summary> Gets or sets the Direction. </summary>
         public BicepValue<BatchAccessRuleDirection> Direction
         {
             get
@@ -35,9 +35,14 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _direction;
             }
+            set
+            {
+                Initialize();
+                _direction.Assign(value);
+            }
         }
 
-        /// <summary> Gets the AddressPrefixes. </summary>
+        /// <summary> Gets or sets the AddressPrefixes. </summary>
         public BicepList<string> AddressPrefixes
         {
             get
@@ -45,9 +50,14 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _addressPrefixes;
             }
+            set
+            {
+                Initialize();
+                _addressPrefixes.Assign(value);
+            }
         }
 
-        /// <summary> Gets the Subscriptions. </summary>
+        /// <summary> Gets or sets the Subscriptions. </summary>
         public BicepList<SubResource> Subscriptions
         {
             get
@@ -55,9 +65,14 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _subscriptions;
             }
+            set
+            {
+                Initialize();
+                _subscriptions.Assign(value);
+            }
         }
 
-        /// <summary> Gets the NetworkSecurityPerimeters. </summary>
+        /// <summary> Gets or sets the NetworkSecurityPerimeters. </summary>
         public BicepList<NetworkSecurityPerimeter> NetworkSecurityPerimeters
         {
             get
@@ -65,9 +80,14 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _networkSecurityPerimeters;
             }
+            set
+            {
+                Initialize();
+                _networkSecurityPerimeters.Assign(value);
+            }
         }
 
-        /// <summary> Gets the FullyQualifiedDomainNames. </summary>
+        /// <summary> Gets or sets the FullyQualifiedDomainNames. </summary>
         public BicepList<string> FullyQualifiedDomainNames
         {
             get
@@ -75,9 +95,14 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _fullyQualifiedDomainNames;
             }
+            set
+            {
+                Initialize();
+                _fullyQualifiedDomainNames.Assign(value);
+            }
         }
 
-        /// <summary> Gets the EmailAddresses. </summary>
+        /// <summary> Gets or sets the EmailAddresses. </summary>
         public BicepList<string> EmailAddresses
         {
             get
@@ -85,15 +110,25 @@ namespace Azure.Provisioning.Batch
                 Initialize();
                 return _emailAddresses;
             }
+            set
+            {
+                Initialize();
+                _emailAddresses.Assign(value);
+            }
         }
 
-        /// <summary> Gets the PhoneNumbers. </summary>
+        /// <summary> Gets or sets the PhoneNumbers. </summary>
         public BicepList<string> PhoneNumbers
         {
             get
             {
                 Initialize();
                 return _phoneNumbers;
+            }
+            set
+            {
+                Initialize();
+                _phoneNumbers.Assign(value);
             }
         }
 
