@@ -46,6 +46,10 @@ execution:
       lifecycle: ephemeral
       container:
         image: mcr.microsoft.com/dotnet/sdk:10.0.103
+      attachments:
+        # Ota owns the package cache across ephemeral restore/build containers.
+        isolated_paths:
+          - .nuget/packages
 tasks:
   setup:
     description: Restore Azure.Core dependencies through the repository NuGet configuration
@@ -85,6 +89,8 @@ tasks:
       args:
         - build
         - --no-restore
+        - --framework
+        - net10.0
       cwd: sdk/core/Azure.Core/src
     requirements:
       toolchains:
