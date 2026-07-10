@@ -35,7 +35,8 @@ project:
   description: Narrow Azure.Core restore and build proof with repository-owned NuGet feed truth
 toolchains:
   dotnet:
-    version: "10.0.103"
+    # global.json uses rollForward: feature, so servicing patches in the 10.0 feature band are valid.
+    version: ">=10.0.103, <10.1.0"
 execution:
   default_context: dotnet:container
   contexts:
