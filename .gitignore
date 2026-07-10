@@ -185,3 +185,8 @@ tsp_client_metadata.yaml
 
 # Common toolchain intermediate files
 temp
+
+# Ota local runtime artifacts
+.ota/state/
+.ota/receipts/
+.ota/proof/
