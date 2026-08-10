@@ -133,6 +133,10 @@ jobs:
         shell: bash
         run: ota up --workflow azure-core --mode "${{ matrix.mode }}" --stream .
 
+      - name: Archive verification receipt
+        shell: bash
+        run: ota receipt --json --archive --workflow azure-core . > ota-receipt.json
+
       - name: Upload Ota evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -144,6 +148,7 @@ jobs:
             ota-version.txt
             ota-validate.json
             ota-doctor.json
+            ota-receipt.json
             .ota/ci/
             .ota/contracts/
             .ota/receipts/
