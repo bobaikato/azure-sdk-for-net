@@ -139,6 +139,7 @@ jobs:
         with:
           name: ota-contract-matrix-${{ matrix.name }}
           retention-days: 7
+          include-hidden-files: true
           path: |
             ota-version.txt
             ota-validate.json
