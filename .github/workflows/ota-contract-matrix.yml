@@ -70,24 +70,26 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: Set up .NET SDK
         if: ${{ matrix.setup_dotnet }}
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
         with:
           global-json-file: global.json
 
       - name: Set up Ota from contract truth
-        uses: ota-run/setup@v1.0.8
+        uses: ota-run/setup@493cba84bf7f7c11c9e8e996d832d93a89c62184 # v1.0.8
         with:
           source: contract
           contract-path: ota.yaml
 
-      - name: Show selected toolchain
+      - name: Verify released Ota and selected toolchain
         shell: bash
         run: |
-          ota --version
+          set -euo pipefail
+          ota --version | tee ota-version.txt
+          grep -Fq 'ota v1.6.25' ota-version.txt
           if [ "${{ matrix.setup_dotnet }}" = "true" ]; then
             dotnet --version
           fi
@@ -103,6 +105,7 @@ jobs:
         run: |
           ota tasks --use .
           ota tasks --safe --use .
+          ota tasks --unsafe --use .
           ota workflows .
 
       - name: Doctor selected mode
@@ -130,13 +133,17 @@ jobs:
         shell: bash
         run: ota up --workflow azure-core --mode "${{ matrix.mode }}" --stream .
 
-      - name: Upload Ota evidence on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
+      - name: Upload Ota evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: ota-contract-matrix-${{ matrix.name }}
+          retention-days: 7
           path: |
+            ota-version.txt
             ota-validate.json
             ota-doctor.json
+            .ota/ci/
+            .ota/contracts/
             .ota/receipts/
             .ota/proof/

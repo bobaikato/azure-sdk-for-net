@@ -28,7 +28,7 @@
 version: 1
 metadata:
   ota:
-    minimum_version: "1.6.24"
+    minimum_version: "1.6.25"
 project:
   name: azure-sdk-for-net
   type: library
@@ -125,5 +125,5 @@ agent:
   bootstrap:
     ota:
       source:
-        kind: branch
-        branch: 1.6.24-implementation
+        kind: version
+        version: v1.6.25
